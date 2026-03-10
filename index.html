@@ -5,45 +5,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dương Trọng Nghĩa – Sales & Business Development</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #0d0d0d;
-    --gold: #c9973a;
-    --gold-light: #e8c87a;
-    --rust: #b84c2b;
-    --sage: #4a6741;
-    --bg: #f9f5ee;
-    --card: #ffffff;
-    --muted: #7a7570;
-    --border: rgba(201,151,58,0.25);
-  }
+/* ── GOOGLE FONTS với preconnect đúng cách ── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+–ink:        #0d0d0d;
+–gold:       #c9973a;
+–gold-light: #e8c87a;
+–rust:       #b84c2b;
+–sage:       #4a6741;
+–bg:         #f9f5ee;
+–card:       #ffffff;
+–muted:      #7a7570;
+–border:     rgba(201,151,58,0.25);
+
+/* Font stacks với fallback đầy đủ */
+–font-serif: ‘Playfair Display’, Georgia, ‘Times New Roman’, serif;
+–font-sans:  ‘DM Sans’, -apple-system, BlinkMacSystemFont, ‘Segoe UI’, sans-serif;
+–font-mono:  ‘Space Mono’, ‘Courier New’, Courier, monospace;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
 
 body {
 background: var(–bg);
 color: var(–ink);
-font-family: ‘DM Sans’, sans-serif;
+font-family: var(–font-sans);
 font-size: 15px;
 line-height: 1.65;
 overflow-x: hidden;
-}
-
-body::before {
-content: ‘’;
-position: fixed;
-inset: 0;
-background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.85’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.04’/%3E%3C/svg%3E”);
-pointer-events: none;
-z-index: 9999;
-opacity: 0.6;
+-webkit-font-smoothing: antialiased;
 }
 
 /* ── HEADER ── */
 header {
-position: relative;
 background: var(–ink);
+position: relative;
 overflow: hidden;
 }
 
@@ -51,285 +51,255 @@ header::before {
 content: ‘’;
 position: absolute;
 top: -120px; right: -120px;
-width: 600px; height: 600px;
+width: 500px; height: 500px;
 border-radius: 50%;
-background: radial-gradient(circle, rgba(201,151,58,0.18) 0%, transparent 70%);
+background: radial-gradient(circle, rgba(201,151,58,0.15) 0%, transparent 70%);
 pointer-events: none;
 }
 
-/* DESKTOP: 2 cột */
-.hero-inner {
-display: grid;
-grid-template-columns: 1fr 1fr;
-min-height: 100vh;
+/* ── AVATAR MOBILE (trên cùng, chỉ hiện mobile) ── */
+.avatar-mobile {
+display: none;
+justify-content: center;
+padding: 48px 24px 0;
 position: relative;
 z-index: 2;
 }
 
+.avatar-mobile-wrap {
+position: relative;
+width: 140px;
+height: 175px;
+}
+
+.avatar-mobile-wrap::after {
+content: ‘’;
+position: absolute;
+top: 10px; left: 10px;
+right: -10px; bottom: -10px;
+border: 1px solid rgba(201,151,58,0.3);
+border-radius: 4px;
+pointer-events: none;
+}
+
+.avatar-mobile-wrap img,
+.avatar-mobile-placeholder {
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: top center;
+border-radius: 4px;
+display: block;
+position: relative;
+z-index: 1;
+}
+
+.avatar-mobile-placeholder {
+background: linear-gradient(145deg, #1c1c1a, #2a2520);
+border: 1px solid rgba(201,151,58,0.2);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
+
+.avatar-mobile-placeholder svg { opacity: 0.35; }
+
+.avatar-mobile-placeholder p {
+font-family: var(–font-mono);
+font-size: 9px;
+letter-spacing: 1.5px;
+color: rgba(201,151,58,0.5);
+text-align: center;
+text-transform: uppercase;
+line-height: 1.7;
+}
+
+/* ── HERO INNER: desktop = 2 cột, mobile = 1 cột ── */
+.hero-inner {
+display: grid;
+grid-template-columns: 1fr 1fr;
+position: relative;
+z-index: 2;
+}
+
+/* ── HERO LEFT ── */
 .hero-left {
 display: flex;
 flex-direction: column;
 justify-content: center;
-padding: 80px 60px 80px 80px;
+padding: 80px 56px 100px 72px;
 }
 
 .hero-tag {
 display: inline-block;
-font-family: ‘Space Mono’, monospace;
-font-size: 11px;
+font-family: var(–font-mono);
+font-size: 10px;
 letter-spacing: 3px;
 color: var(–gold);
 text-transform: uppercase;
 border: 1px solid rgba(201,151,58,0.4);
 padding: 6px 14px;
 border-radius: 2px;
-margin-bottom: 32px;
+margin-bottom: 28px;
+width: -webkit-fit-content;
 width: fit-content;
-animation: fadeUp 0.8s ease both;
 }
 
 .hero-name {
-font-family: ‘Playfair Display’, serif;
-font-size: clamp(42px, 5vw, 68px);
+font-family: var(–font-serif);
+font-size: clamp(40px, 5.5vw, 70px);
 font-weight: 900;
 color: #fff;
 line-height: 1.05;
 letter-spacing: -1px;
-animation: fadeUp 0.8s 0.1s ease both;
 }
-.hero-name span { color: var(–gold); display: block; }
 
-.hero-title {
-font-family: ‘Space Mono’, monospace;
-font-size: 13px;
+.hero-name span {
+color: var(–gold);
+display: block;
+}
+
+.hero-role {
+font-family: var(–font-mono);
+font-size: 11px;
 letter-spacing: 2px;
-color: rgba(255,255,255,0.5);
-margin-top: 20px;
+color: rgba(255,255,255,0.45);
+margin-top: 18px;
 text-transform: uppercase;
-animation: fadeUp 0.8s 0.2s ease both;
 }
 
 .hero-divider {
-width: 60px;
+width: 56px;
 height: 2px;
 background: linear-gradient(90deg, var(–gold), transparent);
-margin: 32px 0;
-animation: fadeUp 0.8s 0.3s ease both;
+margin: 28px 0;
 }
 
 .hero-intro {
-color: rgba(255,255,255,0.7);
-font-size: 15px;
-max-width: 420px;
-line-height: 1.8;
-animation: fadeUp 0.8s 0.4s ease both;
+color: rgba(255,255,255,0.65);
+font-size: 14.5px;
+line-height: 1.85;
+max-width: 400px;
 }
 
 .hero-contacts {
 display: flex;
 flex-direction: column;
-gap: 12px;
-margin-top: 40px;
-animation: fadeUp 0.8s 0.5s ease both;
+gap: 10px;
+margin-top: 36px;
 }
 
 .contact-item {
 display: flex;
 align-items: center;
 gap: 12px;
-color: rgba(255,255,255,0.7);
-font-size: 13.5px;
+color: rgba(255,255,255,0.65);
+font-size: 13px;
 text-decoration: none;
+-webkit-tap-highlight-color: transparent;
 transition: color 0.2s;
 }
+
 .contact-item:hover { color: var(–gold-light); }
 
 .contact-icon {
-width: 32px; height: 32px;
+width: 30px; height: 30px;
 border: 1px solid rgba(201,151,58,0.3);
 border-radius: 6px;
 display: flex; align-items: center; justify-content: center;
-font-size: 14px;
+font-size: 13px;
 flex-shrink: 0;
 background: rgba(201,151,58,0.07);
 }
 
-/* ── AVATAR (desktop) ── */
+/* ── HERO RIGHT (avatar desktop) ── */
 .hero-right {
 display: flex;
 align-items: center;
 justify-content: center;
-padding: 80px 80px 80px 40px;
-animation: fadeLeft 1s 0.3s ease both;
+padding: 80px 72px 100px 40px;
 }
 
-.avatar-frame {
+.avatar-desktop-wrap {
 position: relative;
-width: 320px;
-height: 400px;
+width: 300px;
+height: 375px;
 }
 
-.avatar-frame::before {
+.avatar-desktop-wrap::after {
 content: ‘’;
 position: absolute;
-top: 20px; left: 20px;
-right: -20px; bottom: -20px;
-border: 1.5px solid rgba(201,151,58,0.35);
+top: 18px; left: 18px;
+right: -18px; bottom: -18px;
+border: 1.5px solid rgba(201,151,58,0.3);
 border-radius: 4px;
-z-index: 0;
+pointer-events: none;
 }
 
-.avatar-img {
+.avatar-desktop-wrap img,
+.avatar-desktop-placeholder {
 width: 100%;
 height: 100%;
 object-fit: cover;
 object-position: top center;
 border-radius: 4px;
+display: block;
 position: relative;
 z-index: 1;
-display: block;
 }
 
-.avatar-placeholder {
-width: 100%;
-height: 100%;
-background: linear-gradient(145deg, #1a1a1a, #2a2520);
-border-radius: 4px;
-position: relative;
-z-index: 1;
+.avatar-desktop-placeholder {
+background: linear-gradient(145deg, #1c1c1a, #2a2520);
+border: 1px solid rgba(201,151,58,0.2);
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-border: 1px solid rgba(201,151,58,0.2);
 gap: 16px;
 }
 
-.avatar-placeholder svg { opacity: 0.3; }
+.avatar-desktop-placeholder svg { opacity: 0.3; }
 
-.avatar-placeholder-text {
-font-family: ‘Space Mono’, monospace;
+.avatar-desktop-placeholder p {
+font-family: var(–font-mono);
 font-size: 10px;
 letter-spacing: 2px;
-color: rgba(201,151,58,0.5);
+color: rgba(201,151,58,0.45);
 text-align: center;
 text-transform: uppercase;
+line-height: 1.7;
 }
 
 .avatar-badge {
 position: absolute;
-bottom: -16px; left: 30px;
+bottom: -14px; left: 24px;
 background: var(–gold);
 color: var(–ink);
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
+font-family: var(–font-mono);
+font-size: 9px;
 letter-spacing: 1.5px;
-padding: 8px 18px;
+padding: 7px 16px;
 font-weight: 700;
 text-transform: uppercase;
 z-index: 3;
 border-radius: 2px;
 }
 
-/* ── AVATAR MOBILE (riêng) ── */
-.avatar-mobile {
-display: none;
-width: 100%;
-padding: 40px 32px 0;
-justify-content: center;
-}
-
-.avatar-mobile-frame {
-position: relative;
-width: 160px;
-height: 200px;
-flex-shrink: 0;
-}
-
-.avatar-mobile-frame::before {
-content: ‘’;
-position: absolute;
-top: 10px; left: 10px;
-right: -10px; bottom: -10px;
-border: 1px solid rgba(201,151,58,0.35);
-border-radius: 4px;
-z-index: 0;
-}
-
-.avatar-mobile-img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-object-position: top center;
-border-radius: 4px;
-position: relative;
-z-index: 1;
-display: block;
-}
-
-.avatar-mobile-placeholder {
-width: 100%;
-height: 100%;
-background: linear-gradient(145deg, #1a1a1a, #2a2520);
-border-radius: 4px;
-position: relative;
-z-index: 1;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-border: 1px solid rgba(201,151,58,0.2);
-gap: 10px;
-}
-
-.avatar-mobile-placeholder svg { opacity: 0.3; }
-
-.avatar-mobile-placeholder-text {
-font-family: ‘Space Mono’, monospace;
-font-size: 9px;
-letter-spacing: 1.5px;
-color: rgba(201,151,58,0.5);
-text-align: center;
-text-transform: uppercase;
-line-height: 1.6;
-}
-
-/* ── SCROLL HINT ── */
-.scroll-hint {
-position: absolute;
-bottom: 40px;
-left: 50%;
-transform: translateX(-50%);
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 8px;
-color: rgba(255,255,255,0.3);
-font-family: ‘Space Mono’, monospace;
-font-size: 9px;
-letter-spacing: 2px;
-text-transform: uppercase;
-z-index: 10;
-animation: bounce 2s infinite;
-}
-.scroll-hint::after {
-content: ‘’;
-width: 1px; height: 40px;
-background: linear-gradient(to bottom, rgba(201,151,58,0.6), transparent);
-}
-
-/* ── MAIN ── */
+/* ── MAIN 2-COL ── */
 main {
-max-width: 1100px;
+max-width: 1080px;
 margin: 0 auto;
-padding: 80px 40px;
+padding: 72px 40px;
 display: grid;
-grid-template-columns: 1fr 340px;
-gap: 60px;
+grid-template-columns: 1fr 320px;
+gap: 56px;
 }
 
+/* ── SECTION LABEL ── */
 .section-label {
-font-family: ‘Space Mono’, monospace;
+font-family: var(–font-mono);
 font-size: 10px;
 letter-spacing: 3px;
 color: var(–gold);
@@ -337,7 +307,7 @@ text-transform: uppercase;
 display: flex;
 align-items: center;
 gap: 12px;
-margin-bottom: 32px;
+margin-bottom: 28px;
 }
 .section-label::after {
 content: ‘’;
@@ -346,18 +316,48 @@ height: 1px;
 background: var(–border);
 }
 
+/* ── GOAL ── */
+.goal-section {
+background: var(–ink);
+border-radius: 8px;
+padding: 36px 44px;
+position: relative;
+overflow: hidden;
+margin-bottom: 56px;
+}
+.goal-section::before {
+content: ‘\201C’;
+position: absolute;
+top: -30px; left: 24px;
+font-family: var(–font-serif);
+font-size: 180px;
+color: rgba(201,151,58,0.07);
+line-height: 1;
+pointer-events: none;
+}
+.goal-text {
+font-family: var(–font-serif);
+font-size: 18px;
+font-style: italic;
+color: #fff;
+line-height: 1.75;
+position: relative;
+z-index: 1;
+}
+.goal-text em { color: var(–gold-light); font-style: normal; }
+
 /* ── EXPERIENCE ── */
-.experience-section { margin-bottom: 64px; }
+.exp-section { margin-bottom: 56px; }
 
 .exp-item {
 position: relative;
-padding-left: 32px;
-margin-bottom: 40px;
+padding-left: 28px;
+margin-bottom: 36px;
 }
 .exp-item::before {
 content: ‘’;
 position: absolute;
-left: 0; top: 8px; bottom: -48px;
+left: 0; top: 8px; bottom: -44px;
 width: 1px;
 background: linear-gradient(to bottom, var(–gold), transparent);
 }
@@ -376,138 +376,120 @@ box-shadow: 0 0 0 2px var(–gold);
 .exp-meta {
 display: flex;
 align-items: center;
-gap: 12px;
-margin-bottom: 8px;
+gap: 10px;
+margin-bottom: 6px;
 flex-wrap: wrap;
 }
 
 .exp-date {
-font-family: ‘Space Mono’, monospace;
-font-size: 11px;
+font-family: var(–font-mono);
+font-size: 10px;
 color: var(–gold);
 letter-spacing: 1px;
 }
 
-.exp-location {
+.exp-loc {
 font-size: 11px;
 color: var(–muted);
-display: flex;
-align-items: center;
-gap: 4px;
 }
-.exp-location::before { content: ‘📍’; font-size: 10px; }
+.exp-loc::before { content: ’📍 ’; font-size: 10px; }
 
 .exp-role {
-font-family: ‘Playfair Display’, serif;
-font-size: 19px;
+font-family: var(–font-serif);
+font-size: 18px;
 font-weight: 700;
 color: var(–ink);
-margin-bottom: 4px;
+margin-bottom: 3px;
 }
 
 .exp-company {
-font-size: 13px;
+font-size: 12px;
 font-weight: 600;
 color: var(–rust);
-margin-bottom: 10px;
+margin-bottom: 8px;
 letter-spacing: 0.3px;
 }
 
 .exp-desc {
-font-size: 14px;
+font-size: 13.5px;
 color: #4a4540;
-line-height: 1.75;
+line-height: 1.8;
 }
 
 .intl-badge {
 display: inline-flex;
 align-items: center;
-gap: 8px;
-background: rgba(201,151,58,0.1);
-border: 1px solid rgba(201,151,58,0.25);
-border-radius: 4px;
-padding: 6px 14px;
-font-size: 12px;
+gap: 6px;
+background: rgba(201,151,58,0.08);
+border: 1px solid rgba(201,151,58,0.22);
+border-radius: 3px;
+padding: 4px 10px;
+font-size: 11px;
 color: var(–gold);
 font-weight: 600;
-margin-top: 10px;
 }
 
-/* ── GOAL ── */
-.goal-section {
-background: var(–ink);
-border-radius: 8px;
-padding: 40px 48px;
-position: relative;
-overflow: hidden;
-margin-bottom: 64px;
-}
-.goal-section::before {
-content: ‘”’;
-position: absolute;
-top: -20px; left: 30px;
-font-family: ‘Playfair Display’, serif;
-font-size: 200px;
-color: rgba(201,151,58,0.08);
-line-height: 1;
-pointer-events: none;
-}
-.goal-text {
-font-family: ‘Playfair Display’, serif;
-font-size: 20px;
-font-style: italic;
-color: #fff;
-line-height: 1.7;
-position: relative;
-z-index: 1;
-}
-.goal-text em { color: var(–gold-light); font-style: normal; }
+/* ── STRENGTH TAGS ── */
+.strength-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
-/* ── SIDEBAR / INFO CARD ── */
+.tag {
+font-size: 12px;
+font-weight: 500;
+padding: 5px 12px;
+border-radius: 3px;
+border: 1px solid;
+cursor: default;
+}
+.tag-gold { background: rgba(201,151,58,0.08); border-color: rgba(201,151,58,0.28); color: #8a6420; }
+.tag-rust { background: rgba(184,76,43,0.07); border-color: rgba(184,76,43,0.22); color: #8a3a1e; }
+.tag-sage { background: rgba(74,103,65,0.07); border-color: rgba(74,103,65,0.22); color: #3a5530; }
+
+/* ── INFO CARD ── */
 .info-card {
 background: var(–card);
 border-radius: 8px;
-padding: 28px;
-margin-bottom: 28px;
+padding: 24px;
+margin-bottom: 20px;
 border: 1px solid rgba(0,0,0,0.06);
-box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+box-shadow: 0 2px 16px rgba(0,0,0,0.04);
 }
 
 .info-row {
 display: flex;
 justify-content: space-between;
 align-items: flex-start;
-padding: 10px 0;
+padding: 9px 0;
 border-bottom: 1px solid rgba(0,0,0,0.05);
 gap: 12px;
 }
 .info-row:last-child { border-bottom: none; }
 
 .info-key {
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
+font-family: var(–font-mono);
+font-size: 9px;
 letter-spacing: 1px;
 color: var(–muted);
 text-transform: uppercase;
 flex-shrink: 0;
-padding-top: 1px;
+padding-top: 2px;
 }
+
 .info-val {
-font-size: 13.5px;
+font-size: 13px;
 font-weight: 500;
 color: var(–ink);
 text-align: right;
 }
 
 /* ── SKILLS ── */
-.skill-grid { display: flex; flex-direction: column; gap: 14px; }
+.skill-grid { display: flex; flex-direction: column; gap: 13px; }
 
-.skill-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.skill-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
 
-.skill-name { font-size: 13px; font-weight: 600; color: var(–ink); }
+.skill-name { font-size: 12.5px; font-weight: 600; color: var(–ink); }
 
 .skill-pct {
-font-family: ‘Space Mono’, monospace;
+font-family: var(–font-mono);
 font-size: 10px;
 color: var(–gold);
 }
@@ -523,73 +505,78 @@ overflow: hidden;
 height: 100%;
 background: linear-gradient(90deg, var(–gold), var(–gold-light));
 border-radius: 99px;
-animation: growBar 1s ease both;
 }
-
-/* ── STRENGTH TAGS ── */
-.strength-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-
-.tag {
-font-size: 12px;
-font-weight: 500;
-padding: 6px 14px;
-border-radius: 3px;
-border: 1px solid;
-transition: all 0.2s;
-cursor: default;
-}
-.tag-gold { background: rgba(201,151,58,0.08); border-color: rgba(201,151,58,0.3); color: #8a6420; }
-.tag-rust { background: rgba(184,76,43,0.07); border-color: rgba(184,76,43,0.25); color: #8a3a1e; }
-.tag-sage { background: rgba(74,103,65,0.07); border-color: rgba(74,103,65,0.25); color: #3a5530; }
-.tag:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 
 /* ── HOBBIES ── */
 .hobby-row {
 display: flex;
 align-items: center;
-gap: 12px;
-padding: 10px 0;
+gap: 10px;
+padding: 9px 0;
 border-bottom: 1px solid rgba(0,0,0,0.05);
-font-size: 14px;
+font-size: 13.5px;
 color: #4a4540;
 }
 .hobby-row:last-child { border-bottom: none; }
 
 .hobby-icon {
-font-size: 20px;
-width: 36px; height: 36px;
-background: rgba(201,151,58,0.1);
-border-radius: 8px;
+font-size: 18px;
+width: 32px; height: 32px;
+background: rgba(201,151,58,0.09);
+border-radius: 7px;
 display: flex; align-items: center; justify-content: center;
+flex-shrink: 0;
 }
 
 /* ── EDU ── */
-.edu-item { display: flex; gap: 16px; align-items: flex-start; }
+.edu-item { display: flex; gap: 14px; align-items: flex-start; }
 
 .edu-badge {
-width: 44px; height: 44px;
+width: 40px; height: 40px;
 background: var(–ink);
-color: var(–gold);
-border-radius: 8px;
+border-radius: 7px;
 display: flex; align-items: center; justify-content: center;
-font-size: 20px;
+font-size: 18px;
 flex-shrink: 0;
 }
 
 .edu-level {
-font-family: ‘Playfair Display’, serif;
-font-size: 17px;
+font-family: var(–font-serif);
+font-size: 15px;
 font-weight: 700;
 color: var(–ink);
-margin-bottom: 4px;
+margin-bottom: 3px;
 }
-.edu-note { font-size: 13px; color: var(–muted); }
+
+.edu-note { font-size: 12.5px; color: var(–muted); line-height: 1.6; }
+
+/* ── APPLY CARD ── */
+.apply-card {
+background: var(–ink);
+border-radius: 8px;
+padding: 22px 24px;
+}
+
+.apply-card .section-label { color: var(–gold); }
+
+.apply-list { display: flex; flex-direction: column; gap: 9px; }
+
+.apply-row {
+display: flex;
+align-items: center;
+gap: 10px;
+font-size: 13px;
+}
+.apply-row-primary { color: #fff; font-weight: 500; }
+.apply-row-secondary { color: rgba(255,255,255,0.6); }
+
+.apply-arrow { color: var(–gold); font-size: 10px; flex-shrink: 0; }
 
 /* ── FOOTER ── */
 footer {
 background: var(–ink);
 text-align: center;
-padding: 48px 40px;
+padding: 44px 32px;
 position: relative;
 overflow: hidden;
 }
@@ -598,116 +585,109 @@ content: ‘’;
 position: absolute;
 top: 0; left: 50%;
 transform: translateX(-50%);
-width: 60%; height: 1px;
+width: 50%; height: 1px;
 background: linear-gradient(90deg, transparent, var(–gold), transparent);
 }
 .footer-name {
-font-family: ‘Playfair Display’, serif;
-font-size: 22px;
+font-family: var(–font-serif);
+font-size: 20px;
 color: #fff;
-margin-bottom: 8px;
+margin-bottom: 6px;
 }
 .footer-sub {
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
+font-family: var(–font-mono);
+font-size: 9px;
 letter-spacing: 3px;
-color: rgba(201,151,58,0.6);
+color: rgba(201,151,58,0.55);
 text-transform: uppercase;
 }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(24px); }
-to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeLeft {
-from { opacity: 0; transform: translateX(30px); }
-to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes bounce {
-0%,100% { transform: translateX(-50%) translateY(0); }
-50%      { transform: translateX(-50%) translateY(8px); }
-}
-@keyframes growBar {
-from { width: 0 !important; }
-}
-
-/* ══════════════════════════════
-RESPONSIVE — MOBILE
-══════════════════════════════ */
+/* ══════════════════════════════════
+MOBILE RESPONSIVE
+══════════════════════════════════ */
 @media (max-width: 768px) {
 
-```
-/* Header chuyển sang 1 cột, auto height */
-header { min-height: unset; }
+/* Avatar mobile hiện */
+.avatar-mobile { display: flex; }
 
-.hero-inner {
-  grid-template-columns: 1fr;
-  min-height: unset;
-}
-
-/* Avatar mobile hiện ra phía trên */
-.avatar-mobile {
-  display: flex;
-}
+/* Hero inner 1 cột */
+.hero-inner { grid-template-columns: 1fr; }
 
 /* Avatar desktop ẩn */
-.hero-right {
-  display: none;
-}
+.hero-right { display: none; }
 
+/* Hero left padding mobile */
 .hero-left {
-  padding: 32px 24px 56px;
+padding: 36px 24px 60px;
 }
 
-.scroll-hint { display: none; }
+.hero-name { font-size: clamp(38px, 10vw, 52px); }
+.hero-intro { max-width: 100%; }
 
 /* Main 1 cột */
 main {
-  grid-template-columns: 1fr;
-  padding: 40px 20px;
-  gap: 32px;
+grid-template-columns: 1fr;
+padding: 40px 20px;
+gap: 0;
 }
+
+.main-col { margin-bottom: 0; }
 
 .goal-section {
-  padding: 28px 24px;
+padding: 28px 24px;
+margin-bottom: 40px;
+border-radius: 6px;
 }
-.goal-text { font-size: 17px; }
+.goal-text { font-size: 16px; }
 
+.exp-section { margin-bottom: 40px; }
 
+.sidebar { margin-top: 8px; }
+
+footer { padding: 36px 24px; }
+}
+
+@media (max-width: 400px) {
+.hero-left { padding: 32px 18px 56px; }
+main { padding: 36px 16px; }
 }
 </style>
 
 </head>
 <body>
 
+<!-- ════════ HEADER ════════ -->
+
 <header>
-  <!-- AVATAR MOBILE — hiện trên cùng khi màn nhỏ -->
+
+  <!-- Avatar mobile — hiện trước tên trên điện thoại -->
+
   <div class="avatar-mobile">
-    <div class="avatar-mobile-frame">
-      <!-- Khi có ảnh: thay div bên dưới bằng <img src="avatar.jpg" class="avatar-mobile-img"> -->
+    <div class="avatar-mobile-wrap">
+      <!-- ĐỂ THÊM ẢNH: xóa div.avatar-mobile-placeholder, thay bằng: <img src="avatar.jpg" alt="Dương Trọng Nghĩa"> -->
       <div class="avatar-mobile-placeholder">
-        <svg width="44" height="44" viewBox="0 0 64 64" fill="none">
+        <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
           <circle cx="32" cy="24" r="14" stroke="#c9973a" stroke-width="1.5"/>
           <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <p class="avatar-mobile-placeholder-text">Ảnh đại diện<br>sẽ thêm sau</p>
+        <p>Ảnh đại diện<br>sẽ thêm sau</p>
       </div>
     </div>
   </div>
 
   <div class="hero-inner">
-    <!-- LEFT -->
-    <div class="hero-left">
-      <div class="hero-tag">✦ Curriculum Vitae · 2025</div>
 
+```
+<!-- LEFT -->
+<div class="hero-left">
+  <div class="hero-tag">✦ Curriculum Vitae · 2025</div>
 
   <h1 class="hero-name">
     Dương Trọng
     <span>Nghĩa</span>
   </h1>
 
-  <p class="hero-title">Sales · Business Development · Customer Relations</p>
+  <p class="hero-role">Sales · Business Development · Customer Relations</p>
   <div class="hero-divider"></div>
 
   <p class="hero-intro">
@@ -716,108 +696,118 @@ main {
 
   <div class="hero-contacts">
     <a href="tel:0373453757" class="contact-item">
-      <div class="contact-icon">📞</div>0373 453 757
+      <div class="contact-icon">📞</div>
+      0373 453 757
     </a>
     <a href="https://zalo.me/0373453757" target="_blank" class="contact-item">
-      <div class="contact-icon">💬</div>Zalo: 0373 453 757
+      <div class="contact-icon">💬</div>
+      Zalo: 0373 453 757
     </a>
     <a href="mailto:nghjakzz133@gmail.com" class="contact-item">
-      <div class="contact-icon">✉️</div>nghjakzz133@gmail.com
+      <div class="contact-icon">✉️</div>
+      nghjakzz133@gmail.com
     </a>
     <div class="contact-item">
-      <div class="contact-icon">📍</div>Bình Tân, Hồ Chí Minh
+      <div class="contact-icon">📍</div>
+      Bình Tân, Hồ Chí Minh
     </div>
     <div class="contact-item">
-      <div class="contact-icon">🎂</div>07 / 09 / 2001
+      <div class="contact-icon">🎂</div>
+      07 / 09 / 2001
     </div>
   </div>
 </div>
 
-<!-- RIGHT (desktop avatar) -->
+<!-- RIGHT — avatar desktop -->
 <div class="hero-right">
-  <div class="avatar-frame">
-    <!-- Khi có ảnh: thay div bên dưới bằng <img src="avatar.jpg" class="avatar-img"> -->
-    <div class="avatar-placeholder">
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <div class="avatar-desktop-wrap">
+    <!-- ĐỂ THÊM ẢNH: xóa div.avatar-desktop-placeholder, thay bằng: <img src="avatar.jpg" alt="Dương Trọng Nghĩa"> -->
+    <div class="avatar-desktop-placeholder">
+      <svg width="60" height="60" viewBox="0 0 64 64" fill="none">
         <circle cx="32" cy="24" r="14" stroke="#c9973a" stroke-width="1.5"/>
         <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
-      <p class="avatar-placeholder-text">Ảnh đại diện<br>sẽ được thêm vào</p>
+      <p>Ảnh đại diện<br>sẽ được thêm vào</p>
     </div>
-    <div class="avatar-badge">DƯƠNG TRỌNG NGHĨA</div>
+    <div class="avatar-badge">Dương Trọng Nghĩa</div>
   </div>
 </div>
+```
 
   </div>
-
-  <div class="scroll-hint">Cuộn xuống</div>
 </header>
 
-<!-- MAIN -->
+<!-- ════════ MAIN ════════ -->
 
 <main>
+
+  <!-- LEFT COL -->
+
   <div class="main-col">
 
-
+```
+<!-- MỤC TIÊU -->
 <div class="goal-section">
   <p class="goal-text">
-    Tôi muốn phát triển bản thân trong <em>lĩnh vực kinh doanh & bán hàng</em> — không chỉ hoàn thành chỉ tiêu, mà còn xây dựng giá trị thực sự cho khách hàng và doanh nghiệp. Mục tiêu của tôi là từng bước trở thành <em>chuyên viên kinh doanh xuất sắc</em>, góp phần tạo ra tác động lớn hơn.
+    Tôi muốn phát triển trong <em>lĩnh vực kinh doanh & bán hàng</em> — không chỉ hoàn thành chỉ tiêu, mà xây dựng giá trị thực sự cho khách hàng và doanh nghiệp. Mục tiêu là từng bước trở thành <em>chuyên viên kinh doanh xuất sắc</em>.
   </p>
 </div>
 
-<section class="experience-section">
+<!-- KINH NGHIỆM -->
+<section class="exp-section">
   <div class="section-label">Kinh nghiệm làm việc</div>
 
   <div class="exp-item">
     <div class="exp-dot"></div>
     <div class="exp-meta">
       <span class="exp-date">05/2019 – 01/2022</span>
-      <span class="exp-location">Cần Thơ, Việt Nam</span>
+      <span class="exp-loc">Cần Thơ, Việt Nam</span>
     </div>
     <div class="exp-role">Nhân Viên Tiếp Thị</div>
     <div class="exp-company">Công ty Phú Trường Quốc Tế (Hậu Giang)</div>
-    <p class="exp-desc">Chịu trách nhiệm giới thiệu & tiếp thị sản phẩm trực tiếp đến khách hàng, chăm sóc và duy trì mối quan hệ với khách hàng thân thiết, đồng thời hoàn thành chỉ tiêu doanh số được giao.</p>
+    <p class="exp-desc">Giới thiệu & tiếp thị sản phẩm trực tiếp đến khách hàng, chăm sóc và duy trì quan hệ khách hàng thân thiết, hoàn thành chỉ tiêu doanh số. Tích lũy nền tảng vững chắc về kỹ năng thuyết phục và tư duy kinh doanh.</p>
   </div>
 
   <div class="exp-item">
     <div class="exp-dot"></div>
     <div class="exp-meta">
       <span class="exp-date">02/2022 – 12/2024</span>
-      <span class="exp-location">Manila, Philippines</span>
+      <span class="exp-loc">Manila, Philippines</span>
       <span class="intl-badge">🌏 Quốc tế</span>
     </div>
     <div class="exp-role">Nhân Viên Phục Vụ (XKLD)</div>
     <div class="exp-company">Làm việc tại Philippines · Môi trường đa quốc gia</div>
-    <p class="exp-desc">Gần 3 năm làm việc trong môi trường quốc tế tại Philippines. Rèn luyện tác phong chuyên nghiệp, kỷ luật và khả năng thích ứng cao. Giao tiếp đa văn hóa hàng ngày.</p>
+    <p class="exp-desc">Gần 3 năm làm việc trong môi trường quốc tế tại Philippines. Rèn luyện tác phong chuyên nghiệp, kỷ luật cao, giao tiếp đa văn hóa hàng ngày. Khả năng thích ứng và làm việc áp lực được tôi luyện từ thực tế.</p>
   </div>
 
   <div class="exp-item">
     <div class="exp-dot"></div>
     <div class="exp-meta">
       <span class="exp-date">01/2025 – 11/2025</span>
-      <span class="exp-location">Cần Thơ, Việt Nam</span>
+      <span class="exp-loc">Cần Thơ, Việt Nam</span>
     </div>
     <div class="exp-role">Tìm Cơ Hội Mới / Phụ Giúp Gia Đình</div>
     <div class="exp-company">Giai đoạn tái định hướng nghề nghiệp</div>
-    <p class="exp-desc">Chủ động hỗ trợ gia đình và tích cực tìm kiếm cơ hội phát triển trong lĩnh vực Kinh doanh – Bán hàng. Dùng thời gian này học hỏi, nâng cao bản thân cho giai đoạn phát triển tiếp theo.</p>
+    <p class="exp-desc">Chủ động hỗ trợ gia đình và tích cực tìm kiếm cơ hội trong lĩnh vực Kinh doanh – Bán hàng. Dành thời gian học hỏi, nâng cao bản thân cho giai đoạn phát triển tiếp theo.</p>
   </div>
 </section>
 
+<!-- ĐIỂM MẠNH -->
 <section style="margin-bottom: 48px;">
   <div class="section-label">Điểm mạnh cá nhân</div>
   <div class="strength-tags">
-    <span class="tag tag-gold">⚡ Chăm chỉ & có trách nhiệm</span>
+    <span class="tag tag-gold">⚡ Chăm chỉ & trách nhiệm</span>
     <span class="tag tag-rust">🌍 Kinh nghiệm quốc tế</span>
     <span class="tag tag-sage">🔄 Thích ứng nhanh</span>
     <span class="tag tag-gold">💬 Giao tiếp tốt</span>
     <span class="tag tag-rust">🎯 Tư duy thăng tiến</span>
-    <span class="tag tag-sage">🤝 Teamwork hiệu quả</span>
+    <span class="tag tag-sage">🤝 Teamwork</span>
     <span class="tag tag-gold">💪 Chịu áp lực cao</span>
     <span class="tag tag-rust">🌐 Đa văn hóa</span>
     <span class="tag tag-sage">📈 Định hướng kết quả</span>
   </div>
 </section>
-
+```
 
   </div>
 
@@ -825,8 +815,9 @@ main {
 
   <aside class="sidebar">
 
+```
 <div class="info-card">
-  <div class="section-label" style="margin-bottom:20px;">Thông tin</div>
+  <div class="section-label" style="margin-bottom:18px;">Thông tin</div>
   <div class="info-row"><span class="info-key">Giới tính</span><span class="info-val">Nam</span></div>
   <div class="info-row"><span class="info-key">Tình trạng</span><span class="info-val">Độc thân</span></div>
   <div class="info-row"><span class="info-key">Quê quán</span><span class="info-val">Vị Thuỷ, Hậu Giang</span></div>
@@ -834,29 +825,29 @@ main {
 </div>
 
 <div class="info-card">
-  <div class="section-label" style="margin-bottom:20px;">Kỹ năng</div>
+  <div class="section-label" style="margin-bottom:18px;">Kỹ năng</div>
   <div class="skill-grid">
-    <div class="skill-item">
+    <div>
       <div class="skill-header"><span class="skill-name">Thuyết phục khách hàng</span><span class="skill-pct">90%</span></div>
       <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
     </div>
-    <div class="skill-item">
+    <div>
       <div class="skill-header"><span class="skill-name">Chăm sóc khách hàng</span><span class="skill-pct">88%</span></div>
       <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
     </div>
-    <div class="skill-item">
+    <div>
       <div class="skill-header"><span class="skill-name">Kỹ năng bán hàng</span><span class="skill-pct">85%</span></div>
       <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
     </div>
-    <div class="skill-item">
+    <div>
       <div class="skill-header"><span class="skill-name">Giao tiếp đa văn hóa</span><span class="skill-pct">82%</span></div>
       <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div>
     </div>
-    <div class="skill-item">
+    <div>
       <div class="skill-header"><span class="skill-name">Làm việc nhóm</span><span class="skill-pct">88%</span></div>
       <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
     </div>
-    <div class="skill-item">
+    <div>
       <div class="skill-header"><span class="skill-name">Quản lý thời gian</span><span class="skill-pct">80%</span></div>
       <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
     </div>
@@ -864,7 +855,7 @@ main {
 </div>
 
 <div class="info-card">
-  <div class="section-label" style="margin-bottom:20px;">Học vấn</div>
+  <div class="section-label" style="margin-bottom:18px;">Học vấn</div>
   <div class="edu-item">
     <div class="edu-badge">🎓</div>
     <div>
@@ -875,33 +866,33 @@ main {
 </div>
 
 <div class="info-card">
-  <div class="section-label" style="margin-bottom:20px;">Sở thích</div>
+  <div class="section-label" style="margin-bottom:18px;">Sở thích</div>
   <div class="hobby-row"><div class="hobby-icon">📚</div><span>Học hỏi & phát triển bản thân</span></div>
   <div class="hobby-row"><div class="hobby-icon">🎬</div><span>Xem phim</span></div>
   <div class="hobby-row"><div class="hobby-icon">🎮</div><span>Chơi Game</span></div>
 </div>
 
-<div class="info-card" style="background: var(--ink); border: none;">
-  <div class="section-label" style="margin-bottom:16px; color: var(--gold);">
-    Vị trí ứng tuyển
-    <span style="flex:1; height:1px; background: rgba(201,151,58,0.25); display:block;"></span>
-  </div>
-  <div style="display:flex; flex-direction:column; gap:10px;">
-    <div style="display:flex; align-items:center; gap:10px; color:#fff; font-size:13.5px; font-weight:500;">
-      <span style="color:var(--gold);">▸</span> Nhân viên Kinh doanh / Sales
+<div class="apply-card">
+  <div class="section-label" style="margin-bottom:16px;">Vị trí ứng tuyển</div>
+  <div class="apply-list">
+    <div class="apply-row apply-row-primary">
+      <span class="apply-arrow">▸</span> Nhân viên Kinh doanh / Sales
     </div>
-    <div style="display:flex; align-items:center; gap:10px; color:rgba(255,255,255,0.7); font-size:13.5px;">
-      <span style="color:var(--gold);">▸</span> Chăm sóc Khách hàng
+    <div class="apply-row apply-row-secondary">
+      <span class="apply-arrow">▸</span> Chăm sóc Khách hàng
     </div>
-    <div style="display:flex; align-items:center; gap:10px; color:rgba(255,255,255,0.7); font-size:13.5px;">
-      <span style="color:var(--gold);">▸</span> Marketing / Bán hàng
+    <div class="apply-row apply-row-secondary">
+      <span class="apply-arrow">▸</span> Marketing / Bán hàng
     </div>
   </div>
 </div>
 ```
 
   </aside>
+
 </main>
+
+<!-- ════════ FOOTER ════════ -->
 
 <footer>
   <p class="footer-name">Dương Trọng Nghĩa</p>
