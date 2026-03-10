@@ -1,0 +1,945 @@
+!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dương Trọng Nghĩa – Sales & Business Development</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --cream: #f5f0e8;
+    --gold: #c9973a;
+    --gold-light: #e8c87a;
+    --rust: #b84c2b;
+    --sage: #4a6741;
+    --bg: #f9f5ee;
+    --card: #ffffff;
+    --muted: #7a7570;
+    --border: rgba(201,151,58,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* ── HEADER / HERO ── */
+  header {
+    position: relative;
+    background: var(--ink);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,151,58,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,76,43,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    border: 1px solid rgba(201,151,58,0.4);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+    width: fit-content;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero-name span {
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 20px;
+    text-transform: uppercase;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 32px 0;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-intro {
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    max-width: 420px;
+    line-height: 1.8;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .hero-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 40px;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.7);
+    font-size: 13.5px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item:hover { color: var(--gold-light); }
+
+  .contact-icon {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(201,151,58,0.3);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    background: rgba(201,151,58,0.07);
+  }
+
+  /* ── HERO RIGHT / AVATAR ── */
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 80px 80px 40px;
+    z-index: 2;
+    animation: fadeLeft 1s 0.3s ease both;
+  }
+
+  .avatar-frame {
+    position: relative;
+    width: 320px;
+    height: 400px;
+  }
+
+  .avatar-frame::before {
+    content: '';
+    position: absolute;
+    top: 20px; left: 20px;
+    right: -20px; bottom: -20px;
+    border: 1.5px solid rgba(201,151,58,0.35);
+    border-radius: 4px;
+    z-index: 0;
+  }
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    filter: grayscale(15%) contrast(1.05);
+    display: block;
+  }
+
+  .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #1a1a1a, #2a2520);
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(201,151,58,0.2);
+    gap: 16px;
+  }
+
+  .avatar-placeholder svg {
+    opacity: 0.3;
+  }
+
+  .avatar-placeholder-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(201,151,58,0.5);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .avatar-badge {
+    position: absolute;
+    bottom: -16px; left: 30px;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    padding: 8px 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    z-index: 3;
+    border-radius: 2px;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.3);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 10;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(201,151,58,0.6), transparent);
+  }
+
+  /* ── MAIN LAYOUT ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 60px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 32px;
+    letter-spacing: -0.5px;
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience-section { margin-bottom: 64px; }
+
+  .exp-item {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 40px;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    bottom: -48px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  .exp-item:last-child::before { display: none; }
+
+  .exp-dot {
+    position: absolute;
+    left: -5px; top: 6px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .exp-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .exp-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .exp-location {
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .exp-location::before { content: '📍'; font-size: 10px; }
+
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--rust);
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  .exp-desc {
+    font-size: 14px;
+    color: #4a4540;
+    line-height: 1.75;
+  }
+
+  /* ── GOAL SECTION ── */
+  .goal-section {
+    background: var(--ink);
+    border-radius: 8px;
+    padding: 40px 48px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 64px;
+  }
+
+  .goal-section::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    color: rgba(201,151,58,0.08);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .goal-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .goal-text em {
+    color: var(--gold-light);
+    font-style: normal;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {}
+
+  /* ── INFO CARD ── */
+  .info-card {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    gap: 12px;
+  }
+
+  .info-row:last-child { border-bottom: none; }
+
+  .info-key {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+
+  .info-val {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink);
+    text-align: right;
+  }
+
+  /* ── SKILLS ── */
+  .skill-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .skill-item {}
+
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .skill-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .skill-pct {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+  }
+
+  .skill-bar-bg {
+    height: 3px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 99px;
+    transform-origin: left;
+    animation: growBar 1s ease both;
+  }
+
+  /* ── STRENGTH TAGS ── */
+  .strength-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 3px;
+    border: 1px solid;
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .tag-gold {
+    background: rgba(201,151,58,0.08);
+    border-color: rgba(201,151,58,0.3);
+    color: #8a6420;
+  }
+
+  .tag-rust {
+    background: rgba(184,76,43,0.07);
+    border-color: rgba(184,76,43,0.25);
+    color: #8a3a1e;
+  }
+
+  .tag-sage {
+    background: rgba(74,103,65,0.07);
+    border-color: rgba(74,103,65,0.25);
+    color: #3a5530;
+  }
+
+  .tag:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+  /* ── HOBBIES ── */
+  .hobby-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 14px;
+    color: #4a4540;
+  }
+
+  .hobby-row:last-child { border-bottom: none; }
+
+  .hobby-icon {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    background: rgba(201,151,58,0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .edu-badge {
+    width: 44px; height: 44px;
+    background: var(--ink);
+    color: var(--gold);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .edu-level {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .edu-note {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    text-align: center;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(201,151,58,0.6);
+    text-transform: uppercase;
+  }
+
+  /* ── INTERNATIONAL FLAG ── */
+  .intl-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,151,58,0.1);
+    border: 1px solid rgba(201,151,58,0.25);
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  @keyframes growBar {
+    from { width: 0 !important; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    header { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 60px 32px; }
+    main { grid-template-columns: 1fr; padding: 48px 24px; }
+    .goal-section { padding: 32px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<header>
+  <div class="hero-left">
+    <div class="hero-tag">✦ Curriculum Vitae · 2025</div>
+
+    <h1 class="hero-name">
+      Dương Trọng
+      <span>Nghĩa</span>
+    </h1>
+
+    <p class="hero-title">Sales · Business Development · Customer Relations</p>
+
+    <div class="hero-divider"></div>
+
+    <p class="hero-intro">
+      Người trẻ năng động với hành trình làm việc quốc tế tại Philippines, sẵn sàng đưa sự chuyên nghiệp, kỷ luật và nhiệt huyết vào lĩnh vực kinh doanh – bán hàng.
+    </p>
+
+    <div class="hero-contacts">
+      <a href="tel:0373453757" class="contact-item">
+        <div class="contact-icon">📞</div>
+        0373 453 757
+      </a>
+      <a href="mailto:nghjakzz133@gmail.com" class="contact-item">
+        <div class="contact-icon">✉️</div>
+        nghjakzz133@gmail.com
+      </a>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        Bình Tân, Hồ Chí Minh
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🎂</div>
+        07 / 09 / 2001
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="avatar-frame">
+      <!-- Placeholder — thay bằng thẻ <img> khi có ảnh -->
+      <div class="avatar-placeholder">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="24" r="14" stroke="#c9973a" stroke-width="1.5"/>
+          <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#c9973a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <p class="avatar-placeholder-text">Ảnh đại diện<br>sẽ được thêm vào</p>
+      </div>
+      <div class="avatar-badge">DƯƠNG TRỌNG NGHĨA</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">Cuộn xuống</div>
+</header>
+
+
+<!-- ══════════ MAIN CONTENT ══════════ -->
+<main>
+
+  <!-- ── LEFT COLUMN ── -->
+  <div class="main-col">
+
+    <!-- MỤC TIÊU -->
+    <div class="goal-section">
+      <p class="goal-text">
+        Tôi muốn phát triển bản thân trong <em>lĩnh vực kinh doanh & bán hàng</em> — không chỉ hoàn thành chỉ tiêu, mà còn xây dựng giá trị thực sự cho khách hàng và doanh nghiệp. Mục tiêu của tôi là từng bước trở thành <em>chuyên viên kinh doanh xuất sắc</em>, góp phần tạo ra tác động lớn hơn.
+      </p>
+    </div>
+
+    <!-- KINH NGHIỆM -->
+    <section class="experience-section">
+      <div class="section-label">Kinh nghiệm làm việc</div>
+
+      <!-- Job 1 -->
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-date">05/2019 – 01/2022</span>
+          <span class="exp-location">Cần Thơ, Việt Nam</span>
+        </div>
+        <div class="exp-role">Nhân Viên Tiếp Thị</div>
+        <div class="exp-company">Công ty Phú Trường Quốc Tế (Hậu Giang)</div>
+        <p class="exp-desc">Chịu trách nhiệm giới thiệu & tiếp thị sản phẩm trực tiếp đến khách hàng, chăm sóc và duy trì mối quan hệ với khách hàng thân thiết, đồng thời hoàn thành chỉ tiêu doanh số được giao. Tích lũy nền tảng vững chắc về kỹ năng thuyết phục và tư duy kinh doanh.</p>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-date">02/2022 – 12/2024</span>
+          <span class="exp-location">Manila, Philippines</span>
+          <span class="intl-badge">🌏 Quốc tế</span>
+        </div>
+        <div class="exp-role">Nhân Viên Phục Vụ (XKLD)</div>
+        <div class="exp-company">Làm việc tại Philippines · Môi trường đa quốc gia</div>
+        <p class="exp-desc">Trải nghiệm gần 3 năm làm việc trong môi trường quốc tế tại Philippines. Rèn luyện tác phong chuyên nghiệp, kỷ luật và khả năng thích ứng cao. Giao tiếp đa văn hóa hàng ngày giúp mở rộng tư duy và nâng cao kỹ năng mềm đáng kể.</p>
+      </div>
+
+      <!-- Job 3 -->
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-date">01/2025 – 11/2025</span>
+          <span class="exp-location">Cần Thơ, Việt Nam</span>
+        </div>
+        <div class="exp-role">Tìm Cơ Hội Mới / Phụ Giúp Gia Đình</div>
+        <div class="exp-company">Giai đoạn tái định hướng nghề nghiệp</div>
+        <p class="exp-desc">Sau khi trở về từ Philippines, chủ động hỗ trợ gia đình và tích cực tìm kiếm cơ hội phát triển nghề nghiệp trong lĩnh vực Kinh doanh – Bán hàng. Thời gian này cũng được dùng để học hỏi, nâng cao bản thân và chuẩn bị kỹ càng cho giai đoạn phát triển tiếp theo.</p>
+      </div>
+    </section>
+
+    <!-- ĐIỂM MẠNH -->
+    <section style="margin-bottom: 48px;">
+      <div class="section-label">Điểm mạnh cá nhân</div>
+      <div class="strength-tags">
+        <span class="tag tag-gold">⚡ Chăm chỉ & có trách nhiệm</span>
+        <span class="tag tag-rust">🌍 Kinh nghiệm quốc tế</span>
+        <span class="tag tag-sage">🔄 Thích ứng nhanh</span>
+        <span class="tag tag-gold">💬 Giao tiếp tốt</span>
+        <span class="tag tag-rust">🎯 Tư duy thăng tiến</span>
+        <span class="tag tag-sage">🤝 Teamwork hiệu quả</span>
+        <span class="tag tag-gold">💪 Chịu áp lực cao</span>
+        <span class="tag tag-rust">🌐 Đa văn hóa</span>
+        <span class="tag tag-sage">📈 Định hướng kết quả</span>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ── RIGHT SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <!-- THÔNG TIN CÁ NHÂN -->
+    <div class="info-card">
+      <div class="section-label" style="margin-bottom:20px;">Thông tin</div>
+      <div class="info-row">
+        <span class="info-key">Giới tính</span>
+        <span class="info-val">Nam</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Tình trạng</span>
+        <span class="info-val">Độc thân</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Quê quán</span>
+        <span class="info-val">Vị Thuỷ, Hậu Giang</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Cư trú</span>
+        <span class="info-val">Bình Tân, TP.HCM</span>
+      </div>
+    </div>
+
+    <!-- KỸ NĂNG -->
+    <div class="info-card">
+      <div class="section-label" style="margin-bottom:20px;">Kỹ năng</div>
+      <div class="skill-grid">
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Thuyết phục khách hàng</span>
+            <span class="skill-pct">90%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Chăm sóc khách hàng</span>
+            <span class="skill-pct">88%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Kỹ năng bán hàng</span>
+            <span class="skill-pct">85%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Giao tiếp đa văn hóa</span>
+            <span class="skill-pct">82%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Làm việc nhóm</span>
+            <span class="skill-pct">88%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Quản lý thời gian</span>
+            <span class="skill-pct">80%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HỌC VẤN -->
+    <div class="info-card">
+      <div class="section-label" style="margin-bottom:20px;">Học vấn</div>
+      <div class="edu-item">
+        <div class="edu-badge">🎓</div>
+        <div>
+          <div class="edu-level">Tốt nghiệp THPT</div>
+          <div class="edu-note">Bằng tốt nghiệp 12/12<br>Hậu Giang, Việt Nam</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SỞ THÍCH -->
+    <div class="info-card">
+      <div class="section-label" style="margin-bottom:20px;">Sở thích</div>
+      <div class="hobby-row">
+        <div class="hobby-icon">📚</div>
+        <span>Học hỏi & phát triển bản thân</span>
+      </div>
+      <div class="hobby-row">
+        <div class="hobby-icon">🎬</div>
+        <span>Xem phim</span>
+      </div>
+      <div class="hobby-row">
+        <div class="hobby-icon">🎮</div>
+        <span>Chơi Game</span>
+      </div>
+    </div>
+
+    <!-- VỊ TRÍ ỨNG TUYỂN -->
+    <div class="info-card" style="background: var(--ink); border: none;">
+      <div class="section-label" style="margin-bottom:16px; color: var(--gold);">
+        Vị trí ứng tuyển
+        <span style="flex:1; height:1px; background: rgba(201,151,58,0.25); display:block;"></span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:center; gap:10px; color:#fff; font-size:13.5px; font-weight:500;">
+          <span style="color:var(--gold);">▸</span> Nhân viên Kinh doanh / Sales
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; color:rgba(255,255,255,0.7); font-size:13.5px;">
+          <span style="color:var(--gold);">▸</span> Chăm sóc Khách hàng
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; color:rgba(255,255,255,0.7); font-size:13.5px;">
+          <span style="color:var(--gold);">▸</span> Marketing / Bán hàng
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p class="footer-name">Dương Trọng Nghĩa</p>
+  <p class="footer-sub">Sales · Business Development · 2025</p>
+</footer>
+
+</body>
+</html>
